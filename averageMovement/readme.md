@@ -1,0 +1,1 @@
+Uses frame differencing to calculate an average brightness for controlling a sampler
