@@ -1,5 +1,3 @@
-import processing.sound.*;
-
 // Daniel Shiffman
 // Tracking the average location beyond a given depth threshold
 // Thanks to Dan O'Sullivan
@@ -14,32 +12,16 @@ import org.openkinect.processing.*;
 KinectTracker tracker;
 Kinect kinect;
 
-SinOsc sine;
-
-float freq=400;
-float amp=0.5;
-float pos;
-
-
 
 void setup() {
   size(640, 520);
   kinect = new Kinect(this);
   tracker = new KinectTracker();
-  
-  
-  sine = new SinOsc(this);
-  sine.play();
-  
-  sine.amp(0.2);
-  sine.pan(0.0);
-  
-  
 }
 
 void draw() {
   background(255);
-  
+
   // Run the tracking analysis
   tracker.track();
   // Show the image
@@ -50,19 +32,13 @@ void draw() {
   fill(50, 100, 250, 200);
   noStroke();
   ellipse(v1.x, v1.y, 20, 20);
-  
+
   // Let's draw the "lerped" location
   PVector v2 = tracker.getLerpedPos();
-  float x = map(v2.x, 0,width,80,1000);
-  sine.freq(x);
-  
-  float y = map(v2.y, 0, height, 0,1);
-  sine.amp(y);
-   
   fill(100, 250, 50, 200);
   noStroke();
   ellipse(v2.x, v2.y, 20, 20);
-  
+
   // Display some info
   int t = tracker.getThreshold();
   fill(0);
